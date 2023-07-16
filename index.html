@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Recorder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Screen Recorder</h1>
+        <input type="text" id="fileName" class="input" placeholder="Enter file name">
+        <input type="text" id="fileExtension" class="input" placeholder="Enter file extension">
+        <div class="button-container">
+            <button class="button" id="startButton">Start Recording</button>
+            <button class="button" id="stopButton" disabled>Stop Recording</button>
+        </div>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        let startButton = document.getElementById('startButton');
+        let stopButton = document.getElementById('stopButton');
+        let fileNameInput = document.getElementById('fileName');
+        let fileExtensionInput = document.getElementById('fileExtension');
+
+        startButton.addEventListener('click', startRecording);
+        stopButton.addEventListener('click', stopRecording);
+
+        function startRecording() {
+            recordedChunks = [];
+            const displayMediaOptions = {
+                video: {
+                    cursor: 'always'
+                },
+                audio: false
+            };
+
+            navigator.mediaDevices.getDisplayMedia(displayMediaOptions)
+                .then((stream) => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = handleDataAvailable;
+                    mediaRecorder.start();
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+                })
+                .catch((error) => {
+                    console.error('Error accessing screen capture:', error);
+                });
+        }
+
+        function handleDataAvailable(event) {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.onstop = handleStopRecording;
+                startButton.disabled = false;
+                stopButton.disabled = true;
+            }
+        }
+
+        function handleStopRecording() {
+            const fileName = fileNameInput.value || 'screen_recording';
+            const extension = fileExtensionInput.value || 'mp4';
+            const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName + '.' + extension;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
