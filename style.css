@@ -12,36 +12,11 @@
         }
 
         .container {
+            margin: 0 auto;
             margin-top: 100px;
         }
 
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: var(--accent);
-            color: var(--secondary);
-            border-radius: 3rem;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            margin: .5rem .3rem;
-            -webkit-border-radius: 3rem;
-            -moz-border-radius: 3rem;
-            -ms-border-radius: 3rem;
-            -o-border-radius: 3rem;
-            transition: all 200ms ease;
-            -webkit-transition: all 200ms ease;
-            -moz-transition: all 200ms ease;
-            -ms-transition: all 200ms ease;
-            -o-transition: all 200ms ease;
-}
-.button:hover{
-    opacity: 0.7;
-}
-.button:disabled{
-    cursor: not-allowed;
-    opacity: 0.7;
-}
+
 .input-container{
     display: flex;
     justify-content: space-between;
@@ -67,6 +42,38 @@
         .input:focus{
             outline: 3px solid var(--accent);
         }
+
+        .button {
+            padding:.7rem 1rem;
+            font-size: 14px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            border-radius: 3rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-border-radius: 3rem;
+            -moz-border-radius: 3rem;
+            -ms-border-radius: 3rem;
+            -o-border-radius: 3rem;
+            transition: all 200ms ease;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+}
+.button:hover{
+    opacity: 0.7;
+}
+.button:disabled{
+    cursor: not-allowed;
+    opacity: 0.7;
+}
         .button-container {
-            margin-top: 20px;
+            margin: 1rem auto;
+            padding-left: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 270px;
         }
