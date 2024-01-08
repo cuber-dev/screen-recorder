@@ -1,0 +1,72 @@
+:root{
+    --primary : rgb(32, 32, 32);
+    --secondary : rgb(243, 243, 243);
+    --accent : rgb(15, 77, 128);
+}
+ 
+ body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            border-radius: 3rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: .5rem .3rem;
+            -webkit-border-radius: 3rem;
+            -moz-border-radius: 3rem;
+            -ms-border-radius: 3rem;
+            -o-border-radius: 3rem;
+            transition: all 200ms ease;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+}
+.button:hover{
+    opacity: 0.7;
+}
+.button:disabled{
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+.input-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    gap: .3rem;
+    margin: 0 auto;
+}
+        .input {
+            padding: 10px;
+            font-size: 16px;
+            background-color: var(--secondary);
+            border: none;
+            border-top-left-radius: 3rem;
+            border-bottom-left-radius: 3rem;
+            margin-top: 10px;
+}   
+        .input#fileExtension{
+            border-radius: 0;
+            border-bottom-right-radius: 3rem;
+            border-top-right-radius: 3rem;
+}
+        .input:focus{
+            outline: 3px solid var(--accent);
+        }
+        .button-container {
+            margin-top: 20px;
+        }
